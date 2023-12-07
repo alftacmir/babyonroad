@@ -3,16 +3,31 @@ package com.ecoplus.babyonroad.entidades;
 import java.io.Serializable;
 import java.util.Objects;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 
 @Entity
 public class Direccion implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
+	
+	@Column(name = "calle" , length = 45, nullable = false)
 	private String calle;
+	
+	@Column(name = "numero", length = 45, nullable = false)
 	private Integer numero;
+	
+	@Column(name = "localidad", length = 45, nullable = false)
 	private String localidad;
+	
+	@Column(name = "provincia", length = 45, nullable = false)
 	private String provincia;
 
 	public Direccion(String calle, Integer numero, String localidad, String provincia) {
@@ -25,6 +40,14 @@ public class Direccion implements Serializable {
 
 	public Direccion() {
 
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	public String getCalle() {
@@ -65,7 +88,7 @@ public class Direccion implements Serializable {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(calle, localidad, numero, provincia);
+		return Objects.hash(calle, id, localidad, numero, provincia);
 	}
 
 	@Override
@@ -77,14 +100,17 @@ public class Direccion implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		Direccion other = (Direccion) obj;
-		return Objects.equals(calle, other.calle) && Objects.equals(localidad, other.localidad)
-				&& Objects.equals(numero, other.numero) && Objects.equals(provincia, other.provincia);
+		return Objects.equals(calle, other.calle) && Objects.equals(id, other.id)
+				&& Objects.equals(localidad, other.localidad) && Objects.equals(numero, other.numero)
+				&& Objects.equals(provincia, other.provincia);
 	}
 
 	@Override
 	public String toString() {
-		return "Direccion [calle=" + calle + ", numero=" + numero + ", localidad=" + localidad + ", provincia="
-				+ provincia + "]";
+		return "Direccion [id=" + id + ", calle=" + calle + ", numero=" + numero + ", localidad=" + localidad
+				+ ", provincia=" + provincia + "]";
 	}
+	
+	
 
 }

@@ -8,4 +8,5 @@ import com.ecoplus.babyonroad.entidades.Usuarios;
 @Repository
 public interface UsuarioRepositorio extends JpaRepository<Usuarios, Long>{
 
+
 }

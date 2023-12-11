@@ -72,9 +72,17 @@ public class Usuarios implements Serializable {
 		return serialVersionUID;
 	}
 
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
 	@Override
 	public int hashCode() {
-		return Objects.hash(rol, contrasena, nombre_Usuario);
+		return Objects.hash(contrasena, id, nombre_Usuario, rol);
 	}
 
 	@Override
@@ -86,13 +94,15 @@ public class Usuarios implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		Usuarios other = (Usuarios) obj;
-		return Objects.equals(rol, other.rol) && Objects.equals(contrasena, other.contrasena)
-				&& Objects.equals(nombre_Usuario, other.nombre_Usuario);
+		return Objects.equals(contrasena, other.contrasena) && Objects.equals(id, other.id)
+				&& Objects.equals(nombre_Usuario, other.nombre_Usuario) && Objects.equals(rol, other.rol);
 	}
 
 	@Override
 	public String toString() {
-		return "Usuarios [nombre_Usuario=" + nombre_Usuario + ", contrasena=" + contrasena + ", Rol=" + rol + "]";
+		return "Usuarios [id=" + id + ", nombre_Usuario=" + nombre_Usuario + ", contrasena=" + contrasena + ", rol="
+				+ rol + "]";
 	}
 
+	
 }

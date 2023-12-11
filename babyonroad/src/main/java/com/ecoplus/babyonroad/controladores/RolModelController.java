@@ -27,6 +27,20 @@ public class RolModelController {
 		return rol_repositorio.findAll();
 	}
 	
+	@GetMapping("/rolCliente")
+	public RolModel obtenerCliente(){
+		 List<RolModel> lista_rol  = rol_repositorio.findAll();
+		 RolModel cliente = new RolModel();
+		 for (RolModel rol : lista_rol) {
+			if(rol.getTipoRol().matches("CLIENTE")) {
+				cliente = rol;
+				return cliente;
+			}
+		}
+		 return null;
+		
+	}
+	
 	@GetMapping("/{id}")
 	public ResponseEntity<RolModel> listar_rol_id(@PathVariable Long id) {
 		RolModel rol = rol_repositorio.findById(id)

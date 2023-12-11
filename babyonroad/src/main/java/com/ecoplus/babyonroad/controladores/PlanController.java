@@ -36,7 +36,7 @@ public class PlanController {
 	@GetMapping("/{id}")
 	public ResponseEntity<Plan> listar_plan_id(@PathVariable Long id) {
 		Plan plan = plan_repositorio.findById(id)
-				.orElseThrow(() -> new ResourceNotFoundException("No existe el emplado con id:" + id));
+				.orElseThrow(() -> new ResourceNotFoundException("No existe el plan con id:" + id));
 		return ResponseEntity.ok(plan);
 	}
 

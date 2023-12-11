@@ -30,22 +30,33 @@ public class UsuarioController {
 	}
 	
 	@GetMapping("/{id}")
-	public ResponseEntity<Usuarios> listar_plan_id(@PathVariable Long id) {
+	public ResponseEntity<Usuarios> listar_usuario_id(@PathVariable Long id) {
 		Usuarios usuario = usuario_repositorio.findById(id)
 				.orElseThrow(() -> new ResourceNotFoundException("No existe el usuario con id:" + id));
 		return ResponseEntity.ok(usuario);
 	}
 	
+	@GetMapping("/ultimo")
+	public Usuarios ultima_direccion(){
+		List<Usuarios> lista_usuarios = usuario_repositorio.findAll();
+		return lista_usuarios.getLast();
+	}
+	
 	@PostMapping("/user")
-	public Boolean login(@RequestBody Usuarios usuario) {
-		System.out.println(usuario.getNombre_Usuario());
-		System.out.println(usuario.getContrasena());
+	public Long login(@RequestBody Usuarios usuario) {
 		List<Usuarios> lista = usuario_repositorio.findAll();
 		for (Usuarios usuario_lista : lista) {
 			if(usuario_lista.getNombre_Usuario().equals(usuario.getNombre_Usuario()) && usuario_lista.getContrasena().equals(usuario.getContrasena())) {
-				return true;
+				Long id_usuario = usuario_lista.getId();
+				return id_usuario;
 			}
 		}
-		return false;
+		return (long) 0;
 	}
+	
+	@PostMapping("/nuevo")
+	public Usuarios guardarPlan(@RequestBody Usuarios usuario) {
+		return usuario_repositorio.save(usuario);
+	}
+	
 }

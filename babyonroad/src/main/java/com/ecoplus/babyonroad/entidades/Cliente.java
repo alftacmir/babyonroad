@@ -10,6 +10,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -37,7 +38,7 @@ public class Cliente  implements Serializable {
 	@Column(name = "correo_electronico", nullable = false)
 	private String correo_electronico;
 	
-	@ManyToOne(targetEntity = Usuarios.class)
+	@OneToOne(targetEntity = Usuarios.class)
 	@JoinColumn(name = "PK_Usuario_PK")
 	private Usuarios usuario;
 	
@@ -116,6 +117,14 @@ public class Cliente  implements Serializable {
 	public void setUsuario(Usuarios usuario) {
 		this.usuario = usuario;
 	}
+	
+	public Direccion getDireccion() {
+		return direccion;
+	}
+
+	public void setDireccion(Direccion direccion) {
+		this.direccion = direccion;
+	}
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;
@@ -148,6 +157,8 @@ public class Cliente  implements Serializable {
 				+ telefono + ", correo_electronico=" + correo_electronico + ", usuario=" + usuario + ", direccion="
 				+ direccion + "]";
 	}
+
+	
 
 	
 	

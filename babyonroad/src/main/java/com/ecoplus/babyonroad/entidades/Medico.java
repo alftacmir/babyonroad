@@ -9,7 +9,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -37,7 +37,7 @@ public class Medico implements Serializable {
 	@Column(name = "correo_electronico", nullable = false)
 	private String correo_electronico;
 	
-	@ManyToOne(targetEntity = Usuarios.class)
+	@OneToOne(targetEntity = Usuarios.class)
 	@JoinColumn(name = "PK_Usuario_PK")
 	private Usuarios usuario;
 
